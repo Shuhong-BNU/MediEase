@@ -1,4 +1,4 @@
-# Patient Agent 面试复习手册
+# MediEase 面试复习手册
 
 ## 1. 项目定位
 

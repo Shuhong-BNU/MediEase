@@ -1,4 +1,4 @@
-# Patient Agent 的 LangGraph 多节点工作流
+# MediEase 的 LangGraph 多节点工作流
 
 ## 1. 文档目的
 

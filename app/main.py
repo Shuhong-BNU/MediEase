@@ -59,7 +59,7 @@ openapi_tags = [
 ]
 
 app = FastAPI(
-    title="Patient Agent API",
+    title="MediEase API",
     version="0.2.0",
     description="面向患者咨询场景的 Agent 后端服务。",
     openapi_tags=openapi_tags,
