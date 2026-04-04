@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Patient Report Console</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <aside class="hero-panel">
+        <nav class="view-nav">
+          <a class="view-link" href="/query">单轮查询</a>
+          <a class="view-link" href="/chat">连续对话</a>
+          <a class="view-link active" href="/report">报告解读</a>
+        </nav>
+        <p class="eyebrow">Patient Agent</p>
+        <h1>报告解读页面</h1>
+        <p class="hero-copy">
+          支持直接粘贴报告文本，也支持上传报告图片做 OCR 辅助提取，再由后端产出摘要、异常项、风险等级和建议动作。
+        </p>
+        <div class="hero-card">
+          <span>建议输入</span>
+          <button class="prompt-chip" data-prompt="血常规：白细胞 12.6 偏高；C 反应蛋白 36 偏高；建议结合感染症状判断。">
+            血常规：白细胞 12.6 偏高；C 反应蛋白 36 偏高；建议结合感染症状判断。
+          </button>
+          <button class="prompt-chip" data-prompt="胸部 CT：右下肺片状高密度影，建议复查。">
+            胸部 CT：右下肺片状高密度影，建议复查。
+          </button>
+        </div>
+      </aside>
+
+      <main class="workspace-panel">
+        <section class="query-card">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Report Input</p>
+              <h2>提交报告</h2>
+            </div>
+            <span id="reportStatusBadge" class="status-badge">空闲</span>
+          </div>
+
+          <form id="reportForm" class="query-form">
+            <label class="field">
+              <span>报告文本</span>
+              <textarea
+                id="reportTextInput"
+                rows="8"
+                placeholder="例如：血常规结果、影像描述、医生建议等"
+              ></textarea>
+            </label>
+
+            <div class="control-grid">
+              <label class="field">
+                <span>报告标题</span>
+                <input id="reportTitleInput" type="text" placeholder="例如：血常规复查" />
+              </label>
+              <label class="field">
+                <span>报告类型</span>
+                <input id="reportTypeInput" type="text" placeholder="例如：检验、影像" />
+              </label>
+            </div>
+
+            <label class="field">
+              <span>上传报告图片</span>
+              <input id="reportImageInput" type="file" accept="image/*" />
+            </label>
+
+            <div id="reportImagePreview" class="image-preview is-empty compact-preview">
+              <span>未选择图片</span>
+            </div>
+
+            <div class="action-row">
+              <button id="submitReportButton" type="submit" class="primary-btn">开始解读</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="results-grid">
+          <article class="result-card answer-card">
+            <div class="section-heading">
+              <div>
+                <p class="section-kicker">Interpretation</p>
+                <h2>解读结果</h2>
+              </div>
+            </div>
+            <pre id="reportOutput" class="result-block placeholder">提交报告后，这里会显示摘要、异常项、风险等级和建议动作。</pre>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <script src="/static/report.js"></script>
+  </body>
+</html>
