@@ -1,6 +1,6 @@
 ﻿
 
-# Patient Agent
+# MediEase
 
 这是一个面向患者咨询场景的智能 Agent 后端项目，核心能力包括：
 

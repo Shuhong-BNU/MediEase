@@ -1,1 +1,1 @@
-"""Patient Agent 应用包。"""
+"""MediEase 应用包。"""

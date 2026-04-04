@@ -1,5 +1,5 @@
 """
-Patient Agent 的 LangGraph 编排层。
+MediEase 的 LangGraph 编排层。
 
 本模块保留原有 `QwenMCPAgent` 对外接口不变，但把内部执行流迁移为
 LangGraph 状态图，核心目标是：
