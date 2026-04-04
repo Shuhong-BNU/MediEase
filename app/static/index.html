@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Patient Query Console</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <aside class="hero-panel">
+        <nav class="view-nav">
+          <a class="view-link active" href="/query">单轮查询</a>
+          <a class="view-link" href="/chat">连续对话</a>
+          <a class="view-link" href="/report">报告解读</a>
+        </nav>
+        <p class="eyebrow">Patient Agent</p>
+        <h1>面向患者信息检索的 Query 页面</h1>
+        <p class="hero-copy">
+          输入自然语言问题，可选上传图片，并直接查看模型回答、引用来源、风险提示和语音播报。
+        </p>
+        <p class="helper-text">
+          如果要读取私密患者数据，建议在问题里先补充患者编号，以及手机号或身份证号。
+        </p>
+        <div class="hero-card">
+          <span>示例问题</span>
+          <button class="prompt-chip" data-prompt="请帮我查询患者 P0001 最近一次就诊记录的重点。">
+            请帮我查询患者 P0001 最近一次就诊记录的重点。
+          </button>
+          <button class="prompt-chip" data-prompt="我是 P0003，请总结我最近一次心内科复诊的重点，并给出用药提醒。">
+            我是 P0003，请总结我最近一次心内科复诊的重点，并给出用药提醒。
+          </button>
+          <button class="prompt-chip" data-prompt="请结合上传图片，提取里面的报告文字并说明重点。">
+            请结合上传图片，提取里面的报告文字并说明重点。
+          </button>
+        </div>
+      </aside>
+
+      <main class="workspace-panel">
+        <section class="query-card">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Query Builder</p>
+              <h2>发起查询</h2>
+              <p id="sessionMeta" class="helper-text">当前为单次请求模式，返回后会显示本次 session ID。</p>
+            </div>
+            <span id="statusBadge" class="status-badge">空闲</span>
+          </div>
+
+          <form id="queryForm" class="query-form">
+            <label class="field">
+              <span>问题内容</span>
+              <textarea
+                id="queryInput"
+                name="query"
+                rows="6"
+                placeholder="例如：请帮我查询患者 P0001 的病例信息"
+                required
+              ></textarea>
+            </label>
+
+            <div class="control-grid">
+              <label class="field">
+                <span>上传图片</span>
+                <input id="imageInput" type="file" accept="image/*" />
+              </label>
+
+              <div class="toggle-group">
+                <label class="field compact-field">
+                  <span>语音播报</span>
+                  <select id="speechVoiceSelect" class="select-input">
+                    <option value="none">关闭</option>
+                    <option value="longanyang">龙安阳</option>
+                    <option value="longanhuan">龙安欢</option>
+                    <option value="longxiaochun_v3">龙小淳</option>
+                    <option value="longxiaoxia_v3">龙小夏</option>
+                    <option value="longyumi_v3">YUMI</option>
+                    <option value="longanwen_v3">龙安雯</option>
+                    <option value="longanli_v3">龙安莉</option>
+                    <option value="longanyun_v3">龙安昀</option>
+                  </select>
+                </label>
+              </div>
+            </div>
+
+            <div id="imagePreview" class="image-preview is-empty">
+              <span>未选择图片</span>
+            </div>
+
+            <div class="action-row">
+              <button id="submitButton" type="submit" class="primary-btn">开始查询</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="results-grid">
+          <article class="result-card answer-card">
+            <div class="section-heading">
+              <div>
+                <p class="section-kicker">Answer</p>
+                <h2>回答结果</h2>
+              </div>
+            </div>
+            <pre id="answerOutput" class="result-block placeholder">提交问题后，这里会显示回答内容。</pre>
+            <p id="audioVoiceMeta" class="audio-meta hidden"></p>
+            <audio id="audioPlayer" class="audio-player hidden" controls></audio>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>

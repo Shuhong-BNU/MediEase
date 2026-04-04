@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Patient Chat Console</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <aside class="hero-panel">
+        <nav class="view-nav">
+          <a class="view-link" href="/query">单轮查询</a>
+          <a class="view-link active" href="/chat">连续对话</a>
+          <a class="view-link" href="/report">报告解读</a>
+        </nav>
+        <p class="eyebrow">Patient Agent</p>
+        <h1>交互式聊天页面</h1>
+        <p class="hero-copy">
+          适合连续追问。页面会复用服务端稳定会话，保持上下文连续性，并展示来源、风险提示和人工升级信息。
+        </p>
+        <div class="hero-card">
+          <span>建议玩法</span>
+          <button class="prompt-chip" data-prompt="我是 P0003，请先记住我接下来会连续追问。">
+            我是 P0003，请先记住我接下来会连续追问。
+          </button>
+          <button class="prompt-chip" data-prompt="请总结我最近一次就诊重点。">
+            请总结我最近一次就诊重点。
+          </button>
+          <button class="prompt-chip" data-prompt="那这次用药里，最需要我注意什么？">
+            那这次用药里，最需要我注意什么？
+          </button>
+        </div>
+      </aside>
+
+      <main class="workspace-panel">
+        <section class="chat-card">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Chat Session</p>
+              <h2>连续对话</h2>
+              <p id="chatSessionMeta" class="helper-text">
+                首次查询私密数据时，请在问题里补充患者编号和手机号或身份证号。
+              </p>
+            </div>
+            <div class="chat-toolbar">
+              <span id="chatStatusBadge" class="status-badge">空闲</span>
+              <button id="clearChatButton" type="button" class="ghost-btn">清空会话</button>
+            </div>
+          </div>
+
+          <div id="chatTimeline" class="chat-timeline">
+            <div class="empty-chat-state">
+              <h3>还没有消息</h3>
+              <p>先输入一句话，页面会按聊天形式展示用户消息和助手回复。</p>
+            </div>
+          </div>
+
+          <form id="chatForm" class="chat-form">
+            <div class="chat-options">
+              <div class="speech-controls">
+                <label class="field compact-field voice-field">
+                  <span>语音播报</span>
+                  <select id="chatSpeechVoiceSelect" class="select-input">
+                    <option value="none">关闭</option>
+                    <option value="longanyang">龙安阳</option>
+                    <option value="longanhuan">龙安欢</option>
+                    <option value="longxiaochun_v3">龙小淳</option>
+                    <option value="longxiaoxia_v3">龙小夏</option>
+                    <option value="longyumi_v3">YUMI</option>
+                    <option value="longanwen_v3">龙安雯</option>
+                    <option value="longanli_v3">龙安莉</option>
+                    <option value="longanyun_v3">龙安昀</option>
+                  </select>
+                </label>
+              </div>
+              <label class="field compact-field upload-field">
+                <span>本轮图片</span>
+                <input id="chatImageInput" type="file" accept="image/*" />
+              </label>
+            </div>
+
+            <label class="field">
+              <span>输入消息</span>
+              <textarea
+                id="chatInput"
+                rows="4"
+                placeholder="输入你的问题，例如：继续展开说说用药风险"
+                required
+              ></textarea>
+            </label>
+
+            <div id="chatImagePreview" class="image-preview is-empty compact-preview">
+              <span>本轮未选择图片</span>
+            </div>
+
+            <div class="action-row dual-actions">
+              <p class="helper-text">连续性默认由服务端稳定会话维护，不再依赖前端全文拼接。</p>
+              <button id="sendChatButton" type="submit" class="primary-btn">发送消息</button>
+            </div>
+          </form>
+        </section>
+      </main>
+    </div>
+
+    <script src="/static/chat.js"></script>
+  </body>
+</html>
