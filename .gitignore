@@ -6,4 +6,7 @@
 .venv/
 .idea/
 __pycache__/
-*.pyc
+*.py[cod]
+
+# macOS
+.DS_Store
