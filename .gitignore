@@ -3,6 +3,17 @@
 .env.*
 !.env.example
 
+# Secrets and local credentials
+*.key
+*.pem
+*.p12
+*.pfx
+secrets/
+credentials/
+config.local.*
+*.local.yaml
+mykey.py
+
 .venv/
 .idea/
 __pycache__/
